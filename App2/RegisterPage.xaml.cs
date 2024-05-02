@@ -91,13 +91,21 @@ namespace App2
             try
             {
                 // Construct the JSON payload
-                var payload = new { firstName, lastName, email, password };
+                var payload = new
+                {
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    password = password
+                };
+
                 string jsonPayload = JsonSerializer.Serialize(payload);
 
                 // Send POST request to the registration endpoint
                 using (var client = new HttpClient())
                 {
-                    var response = await client.PostAsync("https://crispydoodle/register", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
+                     var response = await client.PostAsync("https://crispygatewayservice.azurewebsites.net/api/auth/register", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
+
 
                     // Check if request was successful
                     if (response.IsSuccessStatusCode)
@@ -106,7 +114,7 @@ namespace App2
                         string responseBody = await response.Content.ReadAsStringAsync();
                         // Parse response JSON
                         var result = JsonSerializer.Deserialize<RegistrationResponse>(responseBody);
-                        return result.Success;
+                        return true;
                     }
                     else
                     {

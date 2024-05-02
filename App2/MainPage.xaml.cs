@@ -109,7 +109,7 @@ namespace App2
                 // Send POST request to the login endpoint
                 using (var client = new HttpClient())
                 {
-                    var response = await client.PostAsync("https://crispydoodle.com/login", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
+                    var response = await client.PostAsync("https://crispygatewayservice.azurewebsites.net/api/auth/login", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
                     
                     // Check if request was successful
                     if (response.IsSuccessStatusCode)
