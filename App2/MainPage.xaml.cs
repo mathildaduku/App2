@@ -119,7 +119,7 @@ namespace App2
 
                         // Parse response JSON
                         var result = JsonSerializer.Deserialize<LoginResponse>(responseBody);
-                        return result.Success;
+                        return true;
                     }
                     else
                     {

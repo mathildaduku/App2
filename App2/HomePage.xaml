@@ -9,17 +9,18 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListView ItemsSource="{x:Bind ViewModel.BlogPosts}" ItemClick="BlogPost_Click" IsItemClickEnabled="True">
+        <ListView x:Name="ListViewJsonData" ItemsSource="{x:Bind ViewModel.BlogPosts}" ItemClick="BlogPost_Click" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:BlogPost">
-                    <StackPanel Margin="10">
-                        <TextBlock Text="{x:Bind Title}" Style="{StaticResource TitleTextBlockStyle}" />
-                        <TextBlock Text="{x:Bind Author}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                        <TextBlock Text="{x:Bind Content}" TextWrapping="Wrap" />
+                    <StackPanel Margin="10" BorderBrush="White" BorderThickness="2">
+                        <TextBlock Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource TitleTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind User.FirstName, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                        <TextBlock Text="{x:Bind Description, Mode=OneWay}" TextWrapping="Wrap" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Button Content="Back" Width="100" Margin="0,20,0,0" Click="BackButton_Click"/>
     </Grid>
+
 </Page>
